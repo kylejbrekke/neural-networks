@@ -1,0 +1,89 @@
+\documentclass[twoside,11pt]{article}
+
+% Any additional packages needed should be included after jmlr2e.
+% Note that jmlr2e.sty includes epsfig, amssymb, natbib and graphicx,
+% and defines many common macros, such as 'proof' and 'example'.
+%
+% It also sets the bibliographystyle to plainnat; for more information on
+% natbib citation styles, see the natbib documentation, a copy of which
+% is archived at http://www.jmlr.org/format/natbib.pdf
+
+\usepackage{jmlr2e}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{chngcntr}
+\usepackage{relsize}
+
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\setlength{\extrarowheight}{3pt}
+% Definitions of handy macros can go here
+
+\newcommand{\dataset}{{\cal D}}
+\newcommand{\fracpartial}[2]{\frac{\partial #1}{\partial  #2}}
+
+% Short headings should be running head and authors last names
+
+\ShortHeadings{Comparison of Feed-Forward and Gaussian Neural Networks}{Brekke, Wall, et. al.}
+\firstpageno{1}
+
+\begin{document}
+	
+	\title{Review of the Capabilities of Multi-Layer Perceptrons and Gaussian Radial Basis Function Neural Networks on Categorization and Regression Data}
+	
+	\author{\name Kyle J Brekke \email brekke.kylej@gmail.com \\
+		\addr Gianforte School of Computing\\
+		Montana State University\\
+		Bozeman, MT 59717-2220, USA
+		\AND
+		\name Ren H. Wall \email renwall@protonmail.ch \\
+		\addr Gianforte School of Computing\\
+		Montana State University\\
+		Bozeman, MT 59717-2220, USA
+		\AND
+		\name Nicholas J. Rust \email  nicholasrust@protonmail.com \\
+		\addr Gianforte School of Computing\\
+		Montana State University\\
+		Bozeman, MT 59717-2220, USA
+		\AND
+		\name Alexander Mershon \email alexdavidmershon@gmail.com \\
+		\addr Gianforte School of Computing\\
+		Montana State University\\
+		Bozeman, MT 59717-2220, USA}
+	
+	\editor{Kyle J Brekke}
+	
+	\maketitle
+	
+	\begin{abstract}
+		In this paper we compare the performance of feed forward and radial basis function (RBF) neural networks on regression and classification. We use multiple feed forward networks with different hidden layers and multiple RBFs trained on multiple different clustering and reduction methods.
+		We use a collection of six datasets from the UCI Machine Learning Archive to test our results.
+		Three of these datasets have categorical classes, whereas the other three are regression datasets. For classification datasets we collect accuracy and for regression datasets we collect the mean actual error. After collecting all our measurements we find that there is a significant improvement from the best Feed Forward network to the best RBF network, except in the machine data set where we are unable to draw conclusions. 
+	\end{abstract}
+	
+	\begin{keywords}
+		Machine Learning, Radial Basis Function, Backpropogation, Classification, Regression, Feed-Forward, k-Nearest Neighbors, Condensed Nearest Neighbors, k-Means Clustering, Partitioning Around Medoids
+	\end{keywords}
+	
+	% The content of each section should be in the file for that section.
+	% When defining new sections please do so in a new file and \input it here.
+	\input{sections/introduction.tex}
+	
+	\input{sections/hypotheses.tex}
+	
+	\input{sections/implementation.tex}
+	
+	\input{sections/experimental-approach.tex}
+	
+	\input{sections/results.tex}
+	
+	\input{sections/summary.tex}
+	
+	\newpage
+	\vskip 0.2in
+	\bibliography{bibliography}
+	
+\end{document}

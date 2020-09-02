@@ -1,0 +1,41 @@
+\section{Experimental Approach}\label{sec:experimental-approach}
+
+\subsection{Data Preprocessing}
+
+We will be testing six datasets -- \textit{car}, \textit{wine quality} \citep{CCAMaR2009}, \textit{abalone}, \textit{forest fires} \citep{CaM2007}, \textit{machine}, and \textit{segmentation} -- from the UCI Machine Learning Archive (Table 3.1), which can be divided into one of two categories: classification and regression. Classification datasets are categorical in nature, with each entry in a classification set belonging to one of several possible categories. Regression sets are continuous, where each entry corresponds to a specific real-value, instead of a broad category \citep{Dua:2019}. 
+
+Before experimentation begins, we first perform preprocessing on each dataset. Of note, irrelevant or unusable data are dropped, such as features which are the same for every entry or have random, non-quantifiable values. Additionally, non numeric values in datasets which can be quantified are converted, either by applying gradient integer values to the features, or breaking a feature into many binary fields for each possible value in the original feature. Finally, all data are normalized at the end of preprocessing, such that every feature value falls between 0 and 1.
+
+\begin{table}[b!]
+	\centering
+	\begin{tabularx}{1\linewidth}{| c | X | X | X | X | X | X |}
+		\hline
+		Type 			& \multicolumn{3}{c|}{Categorical}	& \multicolumn{3}{c|}{Regression} 			\\ 
+		\hline
+		Dataset 		&$Abalone$    &$Car$ 		 &$Segment.$&$Machine$ &$Wine$ $Quality$& $Forest$ $Fires$\\ 
+		\hline
+		Training 		&3772		  &1557			 &189		  &189		   &5848		 &466		 \\ 
+		\hline
+		Validation		&405		  &171			 &21		  &20		   &649			 &51		  \\ 
+		\hline
+		\textbf{Total}	&\textbf{4177}& \textbf{1728}&\textbf{210}&\textbf{209}&\textbf{6497}&\textbf{517}\\ 
+		\hline
+	\end{tabularx}
+	\caption{Experimental data organized by type, broken down by subset size.}
+\end{table}
+
+\subsection{Testing Procedures}
+Once a dataset has been processed, it is separated into a training and validation subset, where the training subset is roughly 90\% of the original dataset, and the validation set is the remaining 10\% (Table 3.1). Once this has been accomplished for all datasets, each dataset will then be trained and validated on several variations of feed-forward and radial basis function network. 
+
+Classification datasets will be tested on feed-forward networks with 0, 1, and 2 hidden layers where each hidden layer has as many neurons as features in the dataset, as well as RBF networks which have their neurons determined using reduced training sets created through the use of condensed nearest neighbor, k-means clustering, and partitioning around medoids, where the number of initial clusters in k-means and medoids is determined by the size of the reduced dataset created by condensed nearest neighbor. Regression datasets will be tested on the same variations, with the exception of the condensed nearest neighbor variant of the radial basis function network. The number of initial clusters for k-means and medoids have therefore been determined to be one quarter of the size of the original training set. 
+
+Learning rate and momentum have been tuned prior to testing. A range of learning rates $0.01 \leq \eta \leq 0.5$ and momentum values $0.01 \leq \alpha \leq 0.5$ were tested during the development of our model, finding that a learning rate of $\eta = 0.1$ and momentum of $\alpha = 0.05$ yielded our best results.
+
+Once all datasets have been tested, their results will be analyzed according to their type. Classification datasets will be measured using micro-averaged accuracy. Regression sets will be measured using mean average error (MAE)\citep{Chai2014}. The significance of our results will then be evaluated using a test of proportions \citep{Dietterich1997}.
+
+\begin{equation}
+	z = \frac{\rho_A - \rho_B}{\sqrt{2\rho(1 - \rho) / N}}
+\end{equation}
+
+\bigbreak
+Where $\rho_A$ is a loss function for model A, $\rho_B$ is the same loss function for model B, and $\rho = \frac{\rho_A + \rho_B}{2}$. The calculated $z$ value can then be used to determine the significance of results via a statistical Z-test.

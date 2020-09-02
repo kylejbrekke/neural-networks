@@ -1,0 +1,16 @@
+Kyle Brekke:
+Implemented feed forward and backpropogation, training on RBF, re-wrote experiment and main.
+Wrote feed forward implementation section, experimental approach, and results sections, edited paper.
+
+Nic Rust:
+Implemented RBF, RBF-neuron, re-wrote parts of experiment.
+Wrote RBF implementation section.
+
+Ren Wall:
+Implemented multiprocessing on re-used project 2 code.
+Wrote abstract, introduction, and summary.
+Wrote remote code deployment script.
+
+Alex Merson:
+Implemented initial neuron class
+Wrote hypotheses section.
